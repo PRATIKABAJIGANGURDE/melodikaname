@@ -12,12 +12,12 @@ const LyricsDisplay = ({
   title = "Moonlight Melody",
 }: LyricsDisplayProps) => {
   return (
-    <Card className="w-[500px] h-[600px] bg-white p-6 flex flex-col gap-4">
-      <h2 className="text-2xl font-semibold text-center text-gray-900">
+    <Card className="w-[500px] h-[600px] bg-slate-800/50 border-slate-700 p-6 flex flex-col gap-4">
+      <h2 className="text-2xl font-semibold text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
         {title}
       </h2>
-      <ScrollArea className="flex-1 rounded-md border p-4">
-        <div className="whitespace-pre-line text-gray-700">{lyrics}</div>
+      <ScrollArea className="flex-1 rounded-md border border-slate-700 p-4 bg-slate-900/50">
+        <div className="whitespace-pre-line text-slate-300">{lyrics}</div>
       </ScrollArea>
     </Card>
   );

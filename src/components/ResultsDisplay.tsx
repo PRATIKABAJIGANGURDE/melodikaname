@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import LyricsDisplay from "./LyricsDisplay";
 import SongSummary from "./SongSummary";
 import { Button } from "./ui/button";
-import { Save } from "lucide-react";
+import { Save, Loader2 } from "lucide-react";
+import { saveSong } from "@/lib/db";
+import { useToast } from "./ui/use-toast";
 
 interface ResultsDisplayProps {
   lyrics?: string;
@@ -12,30 +14,67 @@ interface ResultsDisplayProps {
   language?: string;
   mood?: string;
   dedicatedTo?: string;
-  onSave?: () => void;
 }
 
 const ResultsDisplay = ({
-  lyrics,
-  title,
-  genre,
-  duration,
-  language,
-  mood,
-  dedicatedTo,
-  onSave = () => console.log("Save clicked"),
+  lyrics = "",
+  title = "",
+  genre = "",
+  duration = "",
+  language = "",
+  mood = "",
+  dedicatedTo = "",
 }: ResultsDisplayProps) => {
+  const [isSaving, setIsSaving] = useState(false);
+  const { toast } = useToast();
+
+  const handleSave = async () => {
+    try {
+      setIsSaving(true);
+      await saveSong({
+        title,
+        lyrics,
+        genre,
+        duration,
+        language,
+        mood,
+        dedicated_to: dedicatedTo,
+      });
+      toast({
+        title: "Success",
+        description: "Song saved successfully!",
+        className: "bg-slate-800 border-slate-700 text-slate-300",
+      });
+    } catch (error) {
+      console.error("Error saving song:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save song. Please try again.",
+        variant: "destructive",
+        className: "bg-slate-800 border-red-500/50 text-slate-300",
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
   return (
-    <div className="w-full min-h-[600px] bg-gray-50 p-8 flex flex-col gap-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Generated Song</h1>
+    <div className="w-full min-h-[600px] bg-slate-800/30 p-8 rounded-xl border border-slate-700">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+          Generated Song
+        </h1>
         <Button
-          onClick={onSave}
-          className="flex items-center gap-2"
+          onClick={handleSave}
+          className="bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 border border-purple-500/50"
           variant="outline"
+          disabled={isSaving}
         >
-          <Save className="w-4 h-4" />
-          Save Song
+          {isSaving ? (
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          ) : (
+            <Save className="w-4 h-4 mr-2" />
+          )}
+          {isSaving ? "Saving..." : "Save Song"}
         </Button>
       </div>
 

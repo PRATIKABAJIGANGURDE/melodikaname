@@ -19,37 +19,59 @@ const SongSummary = ({
   dedicatedTo = "Someone Special",
 }: SongSummaryProps) => {
   return (
-    <Card className="w-[280px] p-6 bg-white shadow-lg">
-      <h3 className="text-xl font-semibold mb-4">Song Summary</h3>
+    <Card className="w-[280px] p-6 bg-slate-800/50 border-slate-700 shadow-lg">
+      <h3 className="text-xl font-semibold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+        Song Summary
+      </h3>
 
       <div className="space-y-4">
         <div className="flex items-center gap-2">
-          <Music className="w-4 h-4 text-primary" />
-          <span className="text-sm text-gray-600">Genre:</span>
-          <Badge variant="secondary">{genre}</Badge>
+          <Music className="w-4 h-4 text-purple-400" />
+          <span className="text-sm text-slate-400">Genre:</span>
+          <Badge
+            variant="secondary"
+            className="bg-purple-500/20 text-purple-400 hover:bg-purple-500/30"
+          >
+            {genre}
+          </Badge>
         </div>
 
         <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4 text-primary" />
-          <span className="text-sm text-gray-600">Duration:</span>
-          <Badge variant="secondary">{duration}</Badge>
+          <Clock className="w-4 h-4 text-purple-400" />
+          <span className="text-sm text-slate-400">Duration:</span>
+          <Badge
+            variant="secondary"
+            className="bg-purple-500/20 text-purple-400 hover:bg-purple-500/30"
+          >
+            {duration}
+          </Badge>
         </div>
 
         <div className="flex items-center gap-2">
-          <Globe className="w-4 h-4 text-primary" />
-          <span className="text-sm text-gray-600">Language:</span>
-          <Badge variant="secondary">{language}</Badge>
+          <Globe className="w-4 h-4 text-purple-400" />
+          <span className="text-sm text-slate-400">Language:</span>
+          <Badge
+            variant="secondary"
+            className="bg-purple-500/20 text-purple-400 hover:bg-purple-500/30"
+          >
+            {language}
+          </Badge>
         </div>
 
         <div className="flex items-center gap-2">
-          <Heart className="w-4 h-4 text-primary" />
-          <span className="text-sm text-gray-600">Mood:</span>
-          <Badge variant="secondary">{mood}</Badge>
+          <Heart className="w-4 h-4 text-purple-400" />
+          <span className="text-sm text-slate-400">Mood:</span>
+          <Badge
+            variant="secondary"
+            className="bg-purple-500/20 text-purple-400 hover:bg-purple-500/30"
+          >
+            {mood}
+          </Badge>
         </div>
 
-        <div className="mt-6 pt-4 border-t border-gray-200">
-          <p className="text-sm text-gray-600">Dedicated to:</p>
-          <p className="text-base font-medium">{dedicatedTo}</p>
+        <div className="mt-6 pt-4 border-t border-slate-700">
+          <p className="text-sm text-slate-400">Dedicated to:</p>
+          <p className="text-base font-medium text-slate-300">{dedicatedTo}</p>
         </div>
       </div>
     </Card>

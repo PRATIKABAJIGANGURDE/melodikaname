@@ -43,7 +43,6 @@ const SongGenerationForm = ({
   const vocalStyles = ["Powerful", "Soft", "Raspy", "Smooth", "Energetic"];
   const moods = ["Happy", "Sad", "Romantic", "Energetic", "Calm", "Nostalgic"];
   const languages = [
-    // Indian Languages
     "Hindi",
     "Bengali",
     "Telugu",
@@ -54,7 +53,6 @@ const SongGenerationForm = ({
     "Kannada",
     "Malayalam",
     "Punjabi",
-    // International Languages
     "English",
     "Spanish",
     "French",
@@ -90,33 +88,43 @@ const SongGenerationForm = ({
   };
 
   return (
-    <Card className="w-[600px] p-8 bg-white">
-      <h2 className="text-2xl font-semibold mb-6 text-center">
+    <Card className="w-[600px] p-8 bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+      <h2 className="text-2xl font-semibold mb-6 text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
         Create Your Song
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="dedicationName">Dedication Name</Label>
+          <Label htmlFor="dedicationName" className="text-slate-300">
+            Dedication Name
+          </Label>
           <Input
             id="dedicationName"
             name="dedicationName"
             placeholder="Enter the name of the person this song is for"
             defaultValue="Someone Special"
+            className="bg-slate-900/50 border-slate-700 text-slate-300 placeholder:text-slate-500"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="genre" className="flex items-center gap-2">
-            <Music className="w-4 h-4" /> Genre
+          <Label
+            htmlFor="genre"
+            className="flex items-center gap-2 text-slate-300"
+          >
+            <Music className="w-4 h-4 text-purple-400" /> Genre
           </Label>
           <Select name="genre" defaultValue={genres[0]}>
-            <SelectTrigger>
+            <SelectTrigger className="bg-slate-900/50 border-slate-700 text-slate-300">
               <SelectValue placeholder="Select genre" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-slate-800 border-slate-700">
               {genres.map((genre) => (
-                <SelectItem key={genre} value={genre}>
+                <SelectItem
+                  key={genre}
+                  value={genre}
+                  className="text-slate-300 focus:bg-purple-500/20 focus:text-purple-400"
+                >
                   {genre}
                 </SelectItem>
               ))}
@@ -125,16 +133,23 @@ const SongGenerationForm = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="vocalStyle" className="flex items-center gap-2">
-            <Mic className="w-4 h-4" /> Vocal Style
+          <Label
+            htmlFor="vocalStyle"
+            className="flex items-center gap-2 text-slate-300"
+          >
+            <Mic className="w-4 h-4 text-purple-400" /> Vocal Style
           </Label>
           <Select name="vocalStyle" defaultValue={vocalStyles[0]}>
-            <SelectTrigger>
+            <SelectTrigger className="bg-slate-900/50 border-slate-700 text-slate-300">
               <SelectValue placeholder="Select vocal style" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-slate-800 border-slate-700">
               {vocalStyles.map((style) => (
-                <SelectItem key={style} value={style}>
+                <SelectItem
+                  key={style}
+                  value={style}
+                  className="text-slate-300 focus:bg-purple-500/20 focus:text-purple-400"
+                >
                   {style}
                 </SelectItem>
               ))}
@@ -143,16 +158,23 @@ const SongGenerationForm = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="mood" className="flex items-center gap-2">
-            <Heart className="w-4 h-4" /> Mood
+          <Label
+            htmlFor="mood"
+            className="flex items-center gap-2 text-slate-300"
+          >
+            <Heart className="w-4 h-4 text-purple-400" /> Mood
           </Label>
           <Select name="mood" defaultValue={moods[0]}>
-            <SelectTrigger>
+            <SelectTrigger className="bg-slate-900/50 border-slate-700 text-slate-300">
               <SelectValue placeholder="Select mood" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-slate-800 border-slate-700">
               {moods.map((mood) => (
-                <SelectItem key={mood} value={mood}>
+                <SelectItem
+                  key={mood}
+                  value={mood}
+                  className="text-slate-300 focus:bg-purple-500/20 focus:text-purple-400"
+                >
                   {mood}
                 </SelectItem>
               ))}
@@ -161,16 +183,23 @@ const SongGenerationForm = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="language" className="flex items-center gap-2">
-            <Globe className="w-4 h-4" /> Language
+          <Label
+            htmlFor="language"
+            className="flex items-center gap-2 text-slate-300"
+          >
+            <Globe className="w-4 h-4 text-purple-400" /> Language
           </Label>
           <Select name="language" defaultValue={languages[0]}>
-            <SelectTrigger>
+            <SelectTrigger className="bg-slate-900/50 border-slate-700 text-slate-300">
               <SelectValue placeholder="Select language" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-slate-800 border-slate-700">
               {languages.map((language) => (
-                <SelectItem key={language} value={language}>
+                <SelectItem
+                  key={language}
+                  value={language}
+                  className="text-slate-300 focus:bg-purple-500/20 focus:text-purple-400"
+                >
                   {language}
                 </SelectItem>
               ))}
@@ -180,7 +209,7 @@ const SongGenerationForm = ({
 
         <Button
           type="submit"
-          className="w-full"
+          className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
           disabled={isLoading || isSubmitting}
         >
           {isLoading || isSubmitting ? "Generating Song..." : "Generate Song"}
